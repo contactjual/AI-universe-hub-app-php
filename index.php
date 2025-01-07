@@ -20,7 +20,7 @@
         <h1>AI Univers Hub</h1>
     </header>
     <main class="container">
-        <div  id="block-all">
+        <div id="block-all">
             <button>Short By Data</button>
             <section class="all-cards" id="card-section">
 
@@ -28,16 +28,16 @@
                 <!-- add card dynamicaly -->
 
 
-            </section>  
+            </section>
             <button>See More</button>
         </div>
 
 
 
         <!-- popup dynamicaly -->
-         
+
         <section class="over-area" id="over-pop">
-            
+
         </section>
 
     </main>
@@ -62,9 +62,9 @@
 
 $text_file = "api_data.text";
 
-if (file_exists( $text_file ) ) {
-    $data = file_get_contents( $text_file );
-    $object = json_decode( $data);
+if (file_exists($text_file)) {
+    $data = file_get_contents($text_file);
+    $object = json_decode($data);
     $object_data = $object->data;
     $array_data = $object_data->tools;
 
@@ -73,12 +73,49 @@ if (file_exists( $text_file ) ) {
     // echo $description;
 
     // var_dump( $object_data);
-    var_dump( $array_data);
+    // var_dump( $array_data);
 
-    $features = $array_data[0]->features;
+    // print_r($features );
 
-    foreach ($features as $key) {
-        echo "$key <br>";
+
+
+    // make danamic index number ...............................
+
+    $array_lenght = count($array_data);
+
+    for ($x = 0; $x < $array_lenght; $x++) {
+        $count_number = $x;
+        $single_index_data = $array_data[$count_number];
+
+        $name = $single_index_data->name;
+        $features = $single_index_data->features;
+        $links = $single_index_data->links;
+
+        // print_r($features);
+
+        // echo "<br>";
+
+
+
+        // echo "$name <br>";
+
+        $inner_array_length = count($links);
+
+        for ($y = 0; $y < $inner_array_length; $y++) {
+            
+            $link = $links[$y];
+
+            $name = $link->name;
+            $url = $link->url;
+            
+            echo $name;
+
+            // echo $url;
+
+            echo "<br>";
+
+        }
+
     }
 
 } else {
