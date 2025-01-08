@@ -24,19 +24,116 @@
             <button>Short By Data</button>
             <section class="all-cards" id="card-section">
 
-
                 <!-- add card dynamicaly -->
+
+                <?php
+
+                // fetch data 
+                
+                $text_file = "api_data.text";
+
+                if (file_exists($text_file)) {
+                    $data = file_get_contents($text_file);
+                    $object = json_decode($data);
+                    $object_data = $object->data;
+                    $array_data = $object_data->tools;
+
+                    // print_r($object_data->tools[01]->id);
+                    // $description = ($object_data->data->tools[0]->description);
+                    // echo $description;
+                
+                    // var_dump( $object_data);
+                    // var_dump( $array_data);
+                
+                    // print_r($features );
+                
+
+
+                    // make danamic index number ...............................
+                
+                    $array_lenght = count($array_data);
+
+                    for ($x = 0; $x < $array_lenght; $x++) {
+                        $count_number = $x;
+                        $single_index_data = $array_data[$count_number];
+
+                        $ai_name = $single_index_data->name;
+                        $features = $single_index_data->features;
+                        $links = $single_index_data->links;
+                        $img = $single_index_data->image;
+                        $published_in = $single_index_data->published_in;
+
+                        // print_r($features);
+                
+                        // echo "<br>";
+                
+
+                        echo "<div class='card'>                                    
+                                    <div class='features'>
+                                        <img src='$img' alt='AI image not found'>
+                                        <h2>Features</h2>";
+                                // finding features array index 
+
+                                $features_length = count($features);
+
+                                for ($z = 0; $z < $features_length; $z++) {
+                                    $features_index = $features[$z];
+                                    $n = $z+1;
+                                    echo "<p>$n. $features_index</p>";
+                                
+                                    
+                                }
+
+                              echo "</div>
+                                    <hr>
+                                    <div class='foot'>
+                                        <div class='name-date'>
+                                            <h2>$ai_name</h2>
+                                            <i class='fa-solid fa-calendar-days'></i>
+                                            <span>$published_in</span>
+                                        </div>
+                                        <i class='fa-solid fa-arrow-right'></i>
+                                    </div>
+                                </div>";
+
+
+
+                        // echo "$name <br>";
+                
+                        $inner_array_length = count($links);
+
+                        for ($y = 0; $y < $inner_array_length; $y++) {
+
+                            $link = $links[$y];
+                            $name = $link->name;
+                            $url = $link->url;
+
+                            // echo $name;
+                
+                            // echo $url;
+                
+                            // echo "<br>";
+                
+                        }
+
+                    }
+
+                } else {
+                    $mess = "data not found";
+                }
+
+                ?>
 
 
             </section>
             <button>See More</button>
-        </div>
-
-
+        </div>;
 
         <!-- popup dynamicaly -->
 
         <section class="over-area" id="over-pop">
+
+
 
         </section>
 
@@ -54,76 +151,3 @@
 </body>
 
 </html>
-
-
-<?php
-
-// fetch data 
-
-$text_file = "api_data.text";
-
-if (file_exists($text_file)) {
-    $data = file_get_contents($text_file);
-    $object = json_decode($data);
-    $object_data = $object->data;
-    $array_data = $object_data->tools;
-
-    // print_r($object_data->tools[01]->id);
-    // $description = ($object_data->data->tools[0]->description);
-    // echo $description;
-
-    // var_dump( $object_data);
-    // var_dump( $array_data);
-
-    // print_r($features );
-
-
-
-    // make danamic index number ...............................
-
-    $array_lenght = count($array_data);
-
-    for ($x = 0; $x < $array_lenght; $x++) {
-        $count_number = $x;
-        $single_index_data = $array_data[$count_number];
-
-        $name = $single_index_data->name;
-        $features = $single_index_data->features;
-        $links = $single_index_data->links;
-
-        // print_r($features);
-
-        // echo "<br>";
-
-
-
-        // echo "$name <br>";
-
-        $inner_array_length = count($links);
-
-        for ($y = 0; $y < $inner_array_length; $y++) {
-            
-            $link = $links[$y];
-
-            $name = $link->name;
-            $url = $link->url;
-            
-            echo $name;
-
-            // echo $url;
-
-            echo "<br>";
-
-        }
-
-    }
-
-} else {
-    $mess = "data not found";
-}
-
-
-
-
-
-?>
