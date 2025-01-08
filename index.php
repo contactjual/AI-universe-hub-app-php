@@ -51,10 +51,11 @@
                         $links = $single_index_data->links;
                         $img = $single_index_data->image;
                         $published_in = $single_index_data->published_in;
+                        $id = $single_index_data->id;
 
                         // creating card html .................
-                
-                        echo "<div onclick='openPopup()' class='card'>                                    
+
+                        echo "<div onclick='openPopup($id)' class='card'>                                    
                                     <div class='features'>
                                         <img src='$img' alt='AI image not found'>
                                         <h2>Features</h2>";
@@ -111,6 +112,27 @@
             </section>
             <button>See More</button>
         </div>
+
+
+        <!-- add pop-up_info dynamicaly -->
+
+        <?php
+
+        $url = "https://openapi.programming-hero.com/api/ai/tool/$id";
+
+        $data2 = file_get_contents($url);
+
+        if ($data2 !== false) {
+            print_r($data2);
+            echo "<br>";
+        } else {
+            $mess2 = "Sorry data2 not found";
+            echo $mess2;
+        }
+
+
+        ?>
+
 
         <!-- popup dynamicaly -->
         <section class="over-area" id="over-pop">
@@ -174,8 +196,12 @@
     <script>
 
         // open pop-up...............
-        function openPopup() {
+        function openPopup($id_number) {
             document.getElementById("over-pop").style.display = "flex";
+
+            // get id number ...
+            console.log($id_number);
+            
         }
 
         // close pop-up..............
