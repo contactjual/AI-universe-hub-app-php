@@ -54,8 +54,8 @@
                         $id = $single_index_data->id;
 
                         // creating card html .................
-
-                        echo "<div onclick='openPopup($id)' class='card'>                                    
+                
+                        echo "<div onclick='openPopup($single_index_data->id)' class='card'>                                    
                                     <div class='features'>
                                         <img src='$img' alt='AI image not found'>
                                         <h2>Features</h2>";
@@ -86,21 +86,21 @@
 
                         // finding links array index ....................
                 
-                        $inner_array_length = count($links);
+                        // $inner_array_length = count($links);
 
-                        for ($y = 0; $y < $inner_array_length; $y++) {
+                        // for ($y = 0; $y < $inner_array_length; $y++) {
 
-                            // $link = $links[$y];
-                            // $name = $link->name;
-                            // $url = $link->url;
+                        //     // $link = $links[$y];
+                        //     // $name = $link->name;
+                        //     // $url = $link->url;
                 
-                            // echo $name;
+                        //     // echo $name;
                 
-                            // echo $url;
+                        //     // echo $url;
                 
-                            // echo "<br>";
+                        //     // echo "<br>";
                 
-                        }
+                        // }
                     }
 
                 } else {
@@ -118,65 +118,42 @@
 
         <?php
 
-        $url = "https://openapi.programming-hero.com/api/ai/tool/$id";
-
-        $data2 = file_get_contents($url);
-
-        if ($data2 !== false) {
-            print_r($data2);
-            echo "<br>";
-        } else {
-            $mess2 = "Sorry data2 not found";
-            echo $mess2;
-        }
-
-
+        // // get id number from form post method ... 
+        // if (isset($_POST["id_number"]) && !empty($_POST["id_number"])) {
+        
+        //     $id_number = $_POST["id_number"];
+        
+        //     echo $id_number;
+        
+        //     // get api data by searching id ...
+        
+        //     $url = "https://openapi.programming-hero.com/api/ai/tool/$id_number";
+        
+        //     if (isset($url)) {
+        
+        //         $data2 = file_get_contents($url);
+        
+        //         if ($data2 !== false) {
+        //             print_r($data2);
+        //             echo "<br>";
+        //         }
+        
+        //     } else {
+        //         $mess2 = "Sorry data2 not found";
+        //         echo $mess2;
+        //     }
+        
+        // } else {
+        //     $mess3 = "Sorry! id number not found";
+        //     echo $mess3;
+        // }
+        
         ?>
 
 
         <!-- popup dynamicaly -->
-        <section class="over-area" id="over-pop">
+        <section class="over-area" id="over-pop"> </section>
 
-            <div class="pops">
-                <div class="pop-up">
-                    <div class="left-card">
-                        <h2>GitHub Copilot is an AI-powered code autocompletion tool that uses OpenAI's GPT technology
-                            to suggest code snippets and completions based on natural language input.</h2>
-                        <div class="mini-card">
-                            <span class="basic">$10/month <br> Basic </span>
-                            <span class="pro"> $50/month <br> pro </span>
-                            <span class="enterprise"> Contact us for <br> pricing Enterprise</span>
-                        </div>
-                        <div class="foot">
-                            <div class="left">
-                                <h3>Features</h3>
-                                <ul>
-                                    <li>[1].feature_name</li>
-                                    <li>[2].feature_name</li>
-                                    <li>[3].feature_name</li>
-                                </ul>
-                            </div>
-                            <div class="right">
-                                <h3>Integrations</h3>
-                                <ul>
-                                    <li>[1].feature_name</li>
-                                    <li>[2].feature_name</li>
-                                    <li>[3].feature_name</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="right-card">
-                        <img src="https://img.olhardigital.com.br/wp-content/uploads/2023/01/chatgpt_assistente.jpg"
-                            alt="">
-                        <h2>Hi, how are you doing today?</h2>
-                        <p>I'm doing well, thank you for asking. How can I assist you today?</p>
-                    </div>
-                </div>
-            </div>
-            <i onclick='closePopup()' class='fa-solid fa-xmark'></i>
-
-        </section>
 
 
     </main>
@@ -191,18 +168,121 @@
     </footer>
 
 
-    <!-- manage pop-up open-close by javaScript........... -->
+    <!-- hidden form................  -->
+
+    <!-- <form id="hidden_form" action="#" method="post">
+        <input type="hidden" id="input_value" name="id_number">
+    </form> -->
+
+
+
+    <!-- manage pop-up (open-close) by javaScript........... -->
 
     <script>
 
         // open pop-up...............
-        function openPopup($id_number) {
+        function openPopup(id_number) {
             document.getElementById("over-pop").style.display = "flex";
 
-            // get id number ...
-            console.log($id_number);
-            
+            // use form ......................................
+
+            // document.getElementById("idForm").addEventListener("submit", function (event) {
+
+            //     event.preventDefault();
+
+            // });
+
+            // add number as input value id number ...
+            // document.getElementById("input_value").value = id_number;
+
+            // auto submit form ...
+            // document.getElementById("hidden_form").submit();
+
+
+            // use ajax ..................................        
+            // fetch("index.php", {
+            //     method: "POST",
+            //     headers: {
+            //         "Content-Type": "application/x-www-form-urlencoded",
+            //     },
+            //     body: "id_number=" + id_number,
+            // })
+            //     .then((response) => response.text())
+            //     .then((result) => {
+            //         console.log("PHP Response:", result);
+            //     })
+            //     .catch((error) => console.error("Error:", error));
+
+
+            // use localStorage ......................
+            // localStorage.setItem("id", id_number);
+            // console.log(localStorage.getItem("id"));
+
+
+            // id customize ...
+            id_number_customize = (id_number.toString().padStart(2, '0'));
+
+            handlePopup(id_number_customize);
+
         }
+
+        // featch data for pop-up ...
+        const handlePopup = async (id) => {
+
+            const res = await fetch(`https://openapi.programming-hero.com/api/ai/tool/${id}`);
+            const data = await res.json();
+            const PopAiData = data.data;
+
+            showPopup(PopAiData);
+        }
+
+        // show popup dynamicaly
+        const showPopup = (PopAiData) => {
+
+            const overPop = document.getElementById('over-pop');
+
+            // create popup
+            overPop.innerHTML = `
+            <div class="pops">
+            <div class="pop-up">
+                <div class="left-card">
+                    <h2>${PopAiData.description}</h2>
+                    <div class="mini-card">
+                        <span class="basic">${PopAiData.pricing[0].price} <br> ${PopAiData.pricing[0].plan} </span>
+                        <span class="pro"> ${PopAiData.pricing[1].price} <br> ${PopAiData.pricing[1].plan} </span>
+                        <span class="enterprise"> ${PopAiData.pricing[2].price} <br> ${PopAiData.pricing[2].plan} </span>
+                    </div>
+                    <div class="foot">
+                        <div class="left">
+                            <h3>Features</h3>
+                            <ul>
+                                <li>${PopAiData.features[1].feature_name}</li>
+                                <li>${PopAiData.features[2].feature_name}</li>
+                                <li>${PopAiData.features[3].feature_name}</li>
+                            </ul>
+                        </div>
+                        <div class="right">
+                            <h3>Integrations</h3>
+                            <ul>
+                                <li>${PopAiData.integrations[0]}</li>
+                                <li>${PopAiData.integrations[1]}</li>
+                                <li>${PopAiData.integrations[2]}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="right-card">
+                    <img src="${PopAiData.image_link[0]}" alt="">
+                    <h2>${PopAiData.input_output_examples[0].input}</h2>
+                    <p>${PopAiData.input_output_examples[0].output}</p>
+                </div>
+            </div>
+        </div>
+        <i onclick="closePopup()" class="fa-solid fa-xmark"></i> `;
+
+        }
+
+
 
         // close pop-up..............
         function closePopup() {
@@ -210,6 +290,7 @@
         }
 
     </script>
+
 
 </body>
 
