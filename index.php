@@ -38,18 +38,7 @@
                     $object_data = $object->data;
                     $array_data = $object_data->tools;
 
-                    // print_r($object_data->tools[01]->id);
-                    // $description = ($object_data->data->tools[0]->description);
-                    // echo $description;
-                
-                    // var_dump( $object_data);
-                    // var_dump( $array_data);
-                
-                    // print_r($features );
-                
-
-
-                    // make danamic index number ...............................
+                    // make danamic index number for array_data...............................
                 
                     $array_lenght = count($array_data);
 
@@ -63,28 +52,25 @@
                         $img = $single_index_data->image;
                         $published_in = $single_index_data->published_in;
 
-                        // print_r($features);
+                        // creating card html .................
                 
-                        // echo "<br>";
-                
-
                         echo "<div class='card'>                                    
                                     <div class='features'>
                                         <img src='$img' alt='AI image not found'>
                                         <h2>Features</h2>";
-                                // finding features array index 
 
-                                $features_length = count($features);
+                        // finding features array index .....................
+                
+                        $features_length = count($features);
 
-                                for ($z = 0; $z < $features_length; $z++) {
-                                    $features_index = $features[$z];
-                                    $n = $z+1;
-                                    echo "<p>$n. $features_index</p>";
-                                
-                                    
-                                }
+                        for ($z = 0; $z < $features_length; $z++) {
+                            $features_index = $features[$z];
+                            $n = $z + 1;
+                            echo "<p>$n. $features_index</p>";
 
-                              echo "</div>
+                        }
+
+                        echo "</div>
                                     <hr>
                                     <div class='foot'>
                                         <div class='name-date'>
@@ -97,17 +83,16 @@
                                 </div>";
 
 
-
-                        // echo "$name <br>";
+                        // finding links array index ....................
                 
                         $inner_array_length = count($links);
 
                         for ($y = 0; $y < $inner_array_length; $y++) {
 
-                            $link = $links[$y];
-                            $name = $link->name;
-                            $url = $link->url;
-
+                            // $link = $links[$y];
+                            // $name = $link->name;
+                            // $url = $link->url;
+                
                             // echo $name;
                 
                             // echo $url;
@@ -115,7 +100,6 @@
                             // echo "<br>";
                 
                         }
-
                     }
 
                 } else {
@@ -124,16 +108,49 @@
 
                 ?>
 
-
             </section>
             <button>See More</button>
-        </div>;
+        </div>
 
         <!-- popup dynamicaly -->
-
         <section class="over-area" id="over-pop">
 
-
+            <div class="pops">
+                <div class="pop-up">
+                    <div class="left-card">
+                        <h2>GitHub Copilot is an AI-powered code autocompletion tool that uses OpenAI's GPT technology to suggest code snippets and completions based on natural language input.</h2>
+                        <div class="mini-card">
+                            <span class="basic">$10/month <br>  Basic </span>
+                            <span class="pro"> $50/month <br> pro </span>
+                            <span class="enterprise"> Contact us for <br> pricing Enterprise</span>
+                        </div>
+                        <div class="foot">
+                            <div class="left">
+                                <h3>Features</h3>
+                                <ul>
+                                    <li>[1].feature_name</li>
+                                    <li>[2].feature_name</li>
+                                    <li>[3].feature_name</li>
+                                </ul>
+                            </div>
+                            <div class="right">
+                                <h3>Integrations</h3>
+                                <ul>
+                                    <li>[1].feature_name</li>
+                                    <li>[2].feature_name</li>
+                                    <li>[3].feature_name</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right-card">
+                        <img src="https://img.olhardigital.com.br/wp-content/uploads/2023/01/chatgpt_assistente.jpg" alt="">
+                        <h2>Hi, how are you doing today?</h2>
+                        <p>I'm doing well, thank you for asking. How can I assist you today?</p>
+                    </div>
+                </div>
+            </div>
+            <i onclick='closePopup()' class='fa-solid fa-xmark'></i>
 
         </section>
 

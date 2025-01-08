@@ -90,8 +90,9 @@ main .over-area {
 
 
     /* add dynamicaly */
-    /* display: flex; */
-    display: none;
+    display: flex;
+    /* display: none; */
+    /* display: block; */
 
 
     position: fixed;
@@ -179,7 +180,7 @@ main .foot ul {
 
 
 
-
+/* footer .................... */
 
 footer {
     background-color: rgb(233, 232, 232);
