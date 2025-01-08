@@ -54,7 +54,7 @@
 
                         // creating card html .................
                 
-                        echo "<div class='card'>                                    
+                        echo "<div onclick='openPopup()' class='card'>                                    
                                     <div class='features'>
                                         <img src='$img' alt='AI image not found'>
                                         <h2>Features</h2>";
@@ -118,9 +118,10 @@
             <div class="pops">
                 <div class="pop-up">
                     <div class="left-card">
-                        <h2>GitHub Copilot is an AI-powered code autocompletion tool that uses OpenAI's GPT technology to suggest code snippets and completions based on natural language input.</h2>
+                        <h2>GitHub Copilot is an AI-powered code autocompletion tool that uses OpenAI's GPT technology
+                            to suggest code snippets and completions based on natural language input.</h2>
                         <div class="mini-card">
-                            <span class="basic">$10/month <br>  Basic </span>
+                            <span class="basic">$10/month <br> Basic </span>
                             <span class="pro"> $50/month <br> pro </span>
                             <span class="enterprise"> Contact us for <br> pricing Enterprise</span>
                         </div>
@@ -144,7 +145,8 @@
                         </div>
                     </div>
                     <div class="right-card">
-                        <img src="https://img.olhardigital.com.br/wp-content/uploads/2023/01/chatgpt_assistente.jpg" alt="">
+                        <img src="https://img.olhardigital.com.br/wp-content/uploads/2023/01/chatgpt_assistente.jpg"
+                            alt="">
                         <h2>Hi, how are you doing today?</h2>
                         <p>I'm doing well, thank you for asking. How can I assist you today?</p>
                     </div>
@@ -153,6 +155,7 @@
             <i onclick='closePopup()' class='fa-solid fa-xmark'></i>
 
         </section>
+
 
     </main>
     <footer class="web-last">
@@ -164,6 +167,23 @@
         </div>
         <small>Copyright 1999-2024 by Refsnes Data. All Rights Reserved.</small>
     </footer>
+
+
+    <!-- manage pop-up open-close by javaScript........... -->
+
+    <script>
+
+        // open pop-up...............
+        function openPopup() {
+            document.getElementById("over-pop").style.display = "flex";
+        }
+
+        // close pop-up..............
+        function closePopup() {
+            document.getElementById("over-pop").style.display = "none";
+        }
+
+    </script>
 
 </body>
 

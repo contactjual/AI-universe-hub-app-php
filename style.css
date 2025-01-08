@@ -89,9 +89,9 @@ main .over-area {
     background-color: white;
 
 
-    /* add dynamicaly */
-    display: flex;
-    /* display: none; */
+    /* add dynamicaly............... */
+    /* display: flex; */
+    display: none;
     /* display: block; */
 
 
